@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>contacts</title>
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+    <body>
+        <div class="header">
+            <i class="fa-solid fa-address-book"></i>
+            <h3> contacts list </h3>
+        </div>
+        <ul>
+            <% for(let i of contact_list) { %>
+                <li class="list-items">
+                    <div class="item"> <p>
+                        <%=i.name%></p>
+                        <p>
+                        <%=i.phone%>
+
+                        </p> 
+                    </div>
+
+                    <!-- here we can use query param or string param  -->
+                    <!-- string param -> abc.com/delete-contact/1234 -->
+                    <!-- query param -> abc.com/delete-contact?phone=1234&name=tony -->
+                    <a href="/delete-contact/?id=<%= i.id %>">
+                        <i class="fas fa-window-close"></i>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+        <!-- <h3 class="header">----------------- Form ------------------</h3> -->
+        <form action="/create-contact" method="post">
+            <input class="input-box" type="text" name="name" placeholder="Enter Name" required>
+            <input class="input-box" type="text" name="contact" placeholder="Enter Number" required>
+            <button class="submit-btn" type="submit">Add </button>
+        </form>
+        <br>
+        <button class="filter" onclick="displayFilter()">
+            <i class="fas fa-filter"></i>
+        </button>
+        <span id="filter-comp">
+            <form action="/filter-search" method="post">
+                <input class="input-box" name="name" placeholder="Name">
+                <input class="input-box" name="phone" placeholder="Phone">
+                <button class="submit-btn" type="submit">filter</button>
+            </form>
+
+        </span>
+
+        <script type="text/javascript" src="/js/home.js"></script>
+        <script src="https://kit.fontawesome.com/74e711aaac.js" crossorigin="anonymous"></script>
+    </body>
+</html>
